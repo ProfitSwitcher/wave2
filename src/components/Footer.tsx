@@ -1,80 +1,106 @@
-import { COMPANY } from "../lib/content";
-import { MapPin, Phone, Clock } from "lucide-react";
+import { Link } from "wouter"
+import { Phone, Mail, MapPin, ArrowRight } from "lucide-react"
+import { COMPANY, FOOTER_LINKS, SERVICE_HUBS } from "@/lib/content"
 
 export function Footer() {
   return (
-    <footer className="bg-brand-brown text-brand-cream" role="contentinfo">
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+    <footer className="bg-wave-dark text-white">
+      {/* Copper accent stripe */}
+      <div className="h-1 bg-wave-copper" />
+
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-10 h-10 bg-brand-green rounded-xl flex items-center justify-center">
-                <Clock className="w-5 h-5 text-brand-gold" />
+          <div className="space-y-5">
+            <div className="flex items-center gap-3">
+              <img src="/wave-logo.jpg" alt="Alvis WAVE Services" className="w-10 h-10 rounded object-cover" />
+              <div>
+                <div className="font-display font-bold text-lg leading-tight tracking-tight">Alvis WAVE</div>
+                <div className="text-[10px] text-white/50 leading-tight tracking-widest uppercase">{COMPANY.acronym}</div>
               </div>
-              <span className="font-display font-bold text-lg">{COMPANY.name}</span>
             </div>
-            <p className="font-body text-brand-cream/60 text-sm leading-relaxed max-w-xs">
-              {COMPANY.description}
-            </p>
-            <div className="mt-6">
-              <p className="font-body text-xs text-brand-cream/40 uppercase tracking-widest mb-2">Hours</p>
-              <p className="font-body text-sm text-brand-cream/70">
-                Mon – Sun: {COMPANY.hours.mon}
-              </p>
+            <p className="text-sm text-white/60 leading-relaxed">{COMPANY.positioning}</p>
+
+            {/* Social */}
+            <div className="flex items-center gap-3">
+              <a href={COMPANY.social.facebook} target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-wave-blue transition-colors text-sm font-bold">
+                f
+              </a>
+              <a href={COMPANY.social.googleReview} target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-wave-blue transition-colors text-sm font-bold">
+                G
+              </a>
             </div>
           </div>
 
-          {/* Quick Links — keep it short */}
+          {/* Services */}
           <div>
-            <h3 className="font-display font-semibold text-brand-cream mb-5">Explore</h3>
-            <ul className="space-y-3" aria-label="Quick links">
-              {[
-                ["Menu", "/menu"],
-                ["Gallery", "/gallery"],
-                ["About", "/about"],
-                ["Contact", "/contact"],
-              ].map(([label, href]) => (
-                <li key={href}>
-                  <a
-                    href={href}
-                    className="font-body text-brand-cream/60 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/50 focus:ring-offset-2 focus:ring-offset-brand-brown rounded"
-                  >
-                    {label}
-                  </a>
+            <h4 className="font-display font-semibold mb-4 text-sm uppercase tracking-wider text-white/70">Services</h4>
+            <ul className="space-y-2.5">
+              {SERVICE_HUBS.map((hub) => (
+                <li key={hub.slug}>
+                  <Link href={`/services/${hub.slug}`} className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-1 group">
+                    {hub.fullName}
+                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Company */}
           <div>
-            <h3 className="font-display font-semibold text-brand-cream mb-5">Visit</h3>
-            <ul className="space-y-4" aria-label="Contact information">
-              <li className="flex items-start gap-2.5 text-brand-cream/60">
-                <MapPin className="w-4 h-4 mt-0.5 text-brand-gold shrink-0" />
-                <span className="font-body text-sm">{COMPANY.address}</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-brand-gold shrink-0" />
-                <a
-                  href={`tel:${COMPANY.phone}`}
-                  className="font-body text-sm text-brand-cream/70 hover:text-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold/50 focus:ring-offset-2 focus:ring-offset-brand-brown rounded"
-                  aria-label={`Call us at ${COMPANY.phone}`}
-                >
-                  {COMPANY.phone}
+            <h4 className="font-display font-semibold mb-4 text-sm uppercase tracking-wider text-white/70">Company</h4>
+            <ul className="space-y-2.5">
+              {FOOTER_LINKS.company.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/60 hover:text-white transition-colors">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Programs & Contact */}
+          <div>
+            <h4 className="font-display font-semibold mb-4 text-sm uppercase tracking-wider text-white/70">Programs</h4>
+            <ul className="space-y-2.5 mb-8">
+              {FOOTER_LINKS.programs.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/60 hover:text-white transition-colors">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="font-display font-semibold mb-4 text-sm uppercase tracking-wider text-white/70">Contact</h4>
+            <ul className="space-y-2.5">
+              <li>
+                <a href={COMPANY.phoneHref} className="text-sm text-wave-copper-light hover:text-white transition-colors flex items-center gap-2">
+                  <Phone className="w-4 h-4" /> {COMPANY.phone}
                 </a>
+              </li>
+              <li>
+                <a href={`mailto:${COMPANY.email}`} className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2">
+                  <Mail className="w-4 h-4" /> {COMPANY.email}
+                </a>
+              </li>
+              <li className="text-sm text-white/60 flex items-start gap-2">
+                <MapPin className="w-4 h-4 mt-0.5 shrink-0" /> {COMPANY.address.full}
               </li>
             </ul>
           </div>
         </div>
+      </div>
 
-        <div className="border-t border-brand-cream/10 mt-12 pt-8 text-center">
-          <p className="font-body text-sm text-brand-cream/40">
-            © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
-          </p>
+      {/* Bottom Bar */}
+      <div className="border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-white/40">
+          <p>© {new Date().getFullYear()} {COMPANY.legal}. All rights reserved.</p>
+          <div className="flex items-center gap-5">
+            <Link href="/privacy" className="hover:text-white/70 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white/70 transition-colors">Terms of Service</Link>
+            <Link href="/sitemap" className="hover:text-white/70 transition-colors">Sitemap</Link>
+          </div>
         </div>
       </div>
     </footer>
-  );
+  )
 }
