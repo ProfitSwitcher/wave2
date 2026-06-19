@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alviswaveservices.com/sitemap.xml
+
+# Disallow admin and private paths
+Disallow: /api/

@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  /* Core palette: warm, grounded, Montana trades */
+  --color-wave-blue: #0F4C81;
+  --color-wave-blue-dark: #0A2D4A;
+  --color-wave-copper: #C9722F;
+  --color-wave-copper-light: #E8A87C;
+  --color-wave-glacier: #EAF3F8;
+  --color-wave-stone: #D7DDE2;
+  --color-wave-charcoal: #1F2933;
+  --color-wave-slate: #5B6875;
+  --color-wave-white: #FAFAF8;
+  --color-wave-black: #1A1A1A;
+
+  /* Warm neutrals (tinted toward brand warmth, never pure black/white) */
+  --color-wave-cream: #F5F0E8;
+  --color-wave-warm-gray: #8A8580;
+  --color-wave-dark: #2C2825;
+  --color-wave-border: #E0DCD5;
+
+  /* Accent: deep forest green (Montana) */
+  --color-wave-forest: #2D5A3D;
+  --color-wave-forest-light: #4A8C5E;
+
+  /* Typography: editorial slab serif for headings, clean sans for body */
+  --font-display: 'Chivo', 'source-sans-3', system-ui, -apple-system, sans-serif;
+  --font-body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-wave-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-wave-white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Custom utilities */
+@utility section-pad {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@utility section-pad-sm {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Topographic background pattern (Montana terrain feel) */
+@utility topo-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40 Q20 20 40 40 Q60 60 80 40' stroke='%23D7DDE2' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M0 50 Q20 30 40 50 Q60 70 80 50' stroke='%23D7DDE2' stroke-width='0.5' fill='none' opacity='0.2'/%3E%3Cpath d='M0 30 Q20 10 40 30 Q60 50 80 30' stroke='%23D7DDE2' stroke-width='0.5' fill='none' opacity='0.2'/%3E%3C/svg%3E");
+}
+
+/* Mountain silhouette divider */
+@utility mountain-divider {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%230F4C81' d='M0 120L48 105C96 90 192 60 288 45C384 30 480 30 576 40C672 50 768 70 864 80C960 90 1056 90 1152 80C1248 70 1344 45 1392 32L1440 20V120H0Z'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: bottom;
+  height: 120px;
+  margin-top: -1px;
+}
+
+/* Subtle texture overlay */
+@utility grain-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Copper accent line */
+@utility copper-accent {
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-wave-copper);
+}
